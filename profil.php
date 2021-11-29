@@ -1,7 +1,4 @@
-<!-- je veux recuperer mes données utilisateurs depuis sql jusqu'à mon site internet = requete 
-je veux remplacer chaque donnée dans la case de mon formulaire par une autre valeur = 
-si la valeur en cours existe 
-je veux renvoyer mes nouvelles données dans ma base de donnée= requete2 -->
+<!-- profil je n'ai pas encore verifier que les login ne puissent pas êtee identique -->
 
 <?php
 session_start();
@@ -32,12 +29,15 @@ if(isset($_POST['editer']))
                 $prenom = $_POST['prenom'];
                 $nom = $_POST['nom'];
                 $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+                $confirmPassword= $_POST['confirmPassword'];
+
                 echo ('<pre>');
                 var_dump($password);
                 echo ('</pre>');
-                echo "britney c ma mère";
+                echo $password;
 
-                $requete2 = mysqli_query($bdd, "UPDATE utilisateurs SET login='$login', prenom='$prenom', nom='$nom', password='$password' WHERE id=$id");
+                $requete2 = mysqli_query($bdd, "UPDATE utilisateurs
+                SET login='$login', prenom='$prenom', nom='$nom', password='$password' WHERE id=$id");
 
                 if($requete2 == true)
                 {
@@ -47,6 +47,11 @@ if(isset($_POST['editer']))
                     $_SESSION['user']["password"] = $password;
 
                     header('location:profil.php');
+                }
+
+                if($password==$confirmPassword)
+                {
+
                 }
 }
 
@@ -61,31 +66,40 @@ if(isset($_POST['editer']))
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>Profil</title>
 </head>
 <body>
         <main>
-        
-            <form action="profil.php" method="post">
-        
-                    <label for="login">Login:</label>
-                        <input type="text" id="login" name="login" value=<?php echo $_SESSION['user']['login'];?>>
-                    
-                    <label for="prenom">Prénom:</label>
-                        <input type="text" id="prenom" name="prenom" value=<?php echo $_SESSION['user']['prenom'];?>>
-        
-                    <label for="nom">Nom de famille:</label>
+           <?php 
+                    if(isset($_SESSION['user']['login']) ||($_SESSION['admin']))
+                    {
+                        echo "PROFIL DE" . $_SESSION['user']['login'] || $_SESSION['admin']."!";
+                    }
+            ?>
+                <form action="profil.php" method="post">
+            
+                        <label for="login">Login:</label>
+                            <input type="text" id="login" name="login" value=<?php echo $_SESSION['user']['login'];?>>
+                        
+                        <label for="prenom">Prénom:</label>
+                            <input type="text" id="prenom" name="prenom" value=<?php echo $_SESSION['user']['prenom'];?>>
+            
+                        <label for="nom">Nom de famille:</label>
                         <input type="text" id="nom" name="nom" value=<?php echo $_SESSION['user']['nom'];?>>
-        
-                    <label for="password">password:</label>
-                        <input type="text" id="password" name="password">
-        
-                    <input type="submit" name="editer" value="Editer mon profil">
-                    </form>
+            
+                        <label for="password">password:</label>
+                        <input type="password" id="password" name="password" placeholder="*********">
+
+                        <label for="password">confirmer password:</label>
+                        <input type="password" name="confirmPassword" placeholder="********">
+            
+                        <input type="submit" name="editer" value="Editer mon profil">
+                </form>
         </main>
         
-</body>
-</html>
+        <?php
+         require ('footer.php');
+        ?>
 
 
             

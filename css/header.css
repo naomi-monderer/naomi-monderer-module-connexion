@@ -14,15 +14,15 @@
   /* Allows hamburger button to communicate with navbar items */
   /* Displays hamburger and navbar items in one row */
   .navbar {
-    position: relative;
     display: flex;
     flex-direction: row;
-    float: right;
     justify-content: flex-end;
-    background-color:rgb(230, 227, 227);
-    border-bottom: rgb(199, 198, 198) 2px solid;
+    background-color:rgb(0, 0, 0);
+    
     width: 100%;
     height: 150px;
+    
+    
   }
   
   /* Presents navbar items in a row without list style (no bullets) */
@@ -31,7 +31,7 @@
     flex-direction: row;
     list-style-type: none;
     align-items: center;
-    width: 50%;
+    width: 40%;
     
   }
   
@@ -44,28 +44,53 @@
   /* Removes text decoration from navbar text */
   .navbar-link {
     text-decoration: none;
-    color: black;
+    color: rgb(107, 102, 102);
     font-size: 18pt;
   }
   
   /* Allows font to change on hover */
   .navbar-link:hover {
-    text-decoration: underline;
-    color: #d55e2d;
+    
+    color: #ffffff;
   }
   
-  /* Hides hamburger */
-  .button {
-    display: none;
-  }
-  
-  @media (max-width: 690px) {
-    .navbar-button {
-      display: inline-block;
-      position: absolute;
-      right: 0px;
-      top: 0px;
-    }
-  }
+ .conteneur-deco-login{
+  display: flex;
+  justify-content: flex-start;
+  width: 10%;
+ 
+ 
+}
 
+.fa-solid {
+  color: rgb(107, 102, 102);
+  font-size:2rem;
+}
+.fa-solid:hover{
+  color: #ffffff;
+}
+
+
+h2{
+  display: flex;
+ align-items: center;
+  color: rgb(107, 102, 102);
+  
+  width: 100px;
+  font-family: 'Roboto', sans-serif;
+  font-weight:lighter;
+  font-size: 2rem;
+  
+  margin-left:30px;
+
+
+  
+}
+.vide-navbar{
+  width: 45%;
+} 
+
+.boutton-deco{
+
+}
 /*---------------------------------------------------------------------</HEADER>------------------------------------------------------------------*/

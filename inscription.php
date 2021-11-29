@@ -1,4 +1,7 @@
+
 <?php
+$cheminCss = 'css/form.css';
+$title = 'inscription';
 $bdd = mysqli_connect('localhost','root','root','moduleconnexion');
 
 if(isset($_POST['submitInscription']))
@@ -17,7 +20,7 @@ if(isset($_POST['submitInscription']))
         // print_r($result);
         // var_dump(count($result));
 
-        if(count($result)==0)
+        if(count($result)==0)// permet de chercher s'il existe déjà le login en base de données. si l'algo compte 0 login à celui entré dans le post c'est ok!
         {
             if($password==$confirmPassword)
             {
@@ -31,6 +34,7 @@ if(isset($_POST['submitInscription']))
                 $erreur= '<p> Mot de passe incorrect</p>';
             }
         }
+
         else
         {
             $erreur= '<p>Ce login est déjà utilisé ou incorrect</p>';
@@ -42,75 +46,137 @@ if(isset($_POST['submitInscription']))
             $erreur= '<p> Tout les champs doivent être remplis</p>';
         }
 }
+?>
+   <?php 
     
-    
-    require_once('header.php');
+    require('header.php');
     ?>
 
-
     <main>
-        <div align="center"> 
-                <h2>INSCRIPTION</h2></br>
-                <form action="" method="POST">
+        <!-- <div class="conteneur">
+            <div class="bloc-form">
 
-                    <table>
-                        <tr>
-                            <td align="right">
+
+                <h2>INSCRIPTION</h2></br>
+               
+                <form method="post" action="">
+                    <div class="corps-formulaire">
+
+
+                            <div class="boite">
+                                <div>
+                                    <label for="login">Login:</label>
+                                </div>
+                                <div>
+                                    <input type="text" id="login" placeholder="Votre login" name="login"><br/>
+                                </div>
+                            </div>
+
+                            <div class="boite">
                                 
-                                <label for="login">Login:</label>
-                            </td>
-                            <td> 
-                                <input type="text" id="login" placeholder="Votre login" name="login"><br/>
-                            </td>  
-                        </tr>
-                        <tr>
-                            <td align="right">
-                                <label for="prenom">Prénom:</label> 
-                            </td>
-                            <td> 
-                                <input type="text" id="prenom" placeholder="Votre prénom" name="prenom"><br/>
-                            </td>  
-                        </tr>
-                        <tr>
-                            <td align="right">
+                                    <label for="prenom">Prénom:</label> 
+                                
+                                
+                                    <input type="text"  placeholder="Votre prénom" name="prenom"><br/>
+                                
+                            </div>
+
+                            <div class="boite">
                                 <label for="nom">Nom de famille:</label>
-                            </td>
-                            <td> 
-                                <input type="text" id="nom" placeholder="Votre nom de famille" name="nom"><br/>   
-                            </td>  
-                        </tr>
-                        <tr>
-                            <td align="right">
+                                <input type="text"placeholder="Votre nom de famille" name="nom"><br/> 
+                            </div>
+                            <div class="boite">
                                 <label for="password">password:</label>
-                            </td>
-                            <td>
-                                <input type="text" id="password" placeholder="Définissez votre password" name="password"><br/>   
-                            </td>  
-                        </tr>
-                        <tr>
-                            <td align="right">
+                                <input type="text"  placeholder="Définissez votre password" name="password"><br/>
+                            </div>
+
+                            <div class="boite">
                                 <label for="password"> confirmez password</label>
-                            </td>
-                            <td> 
-                                <input type="text" name="confirmPassword" placeholder="Confirmez votre password" id="confirm_password"/><br/>   
-                            </td>  
-                        </tr>
-                        <tr>
-                            <td></td>
-                        <td align="center">
-                            </br>
+                                <input type="text" name="confirmPassword" placeholder="Confirmez votre password"/><br/>  
+                            
+                    
                             <input type="submit" name="submitInscription" value="je m'inscris">
-                        </td>
-                        </tr>
-                    </table>
-                </form>  
+                    </div>
+                    
+                </form>
+            </div>    
+        </div> 
+                     -->
+                        
+                        
+
+        <div class="page">
+            <div class="portail-form-inscription">
+                <div class="div-titre-form">
+                
+                     <h2>INSCRIPTION</h2></br> 
+                </div>
+                <div class=portail>        
+                    <form method="post" action="">
+                        <table>
+                            <tr>
+                            <div align="center"> 
+                                <td align="right">
+                                    
+                                    <label for="login">Login:</label>
+                                </td>
+                                <td> 
+                                    <input type="text" id="login" placeholder="   Votre login" name="login"><br/>
+                                </td>  
+                            </tr>
+                            <tr>
+                                <td align="right">
+                                    <label for="prenom">Prénom:</label> 
+                                </td>
+                                <td> 
+                                    <input type="text" id="prenom" placeholder="   Votre prénom" name="prenom"><br/>
+                                </td>  
+                            </tr>
+                            <tr>
+                                <td align="right">
+                                    <label for="nom">Nom de famille:</label>
+                                </td>
+                                <td> 
+                                    <input type="text" id="nom" placeholder="    Votre nom de famille" name="nom"><br/>   
+                                </td>  
+                            </tr>
+                            <tr>
+                                <td align="right">
+                                    <label for="password">password:</label>
+                                </td>
+                                <td>
+                                    <input type="text" id="password" placeholder="   Définissez votre password" name="password"><br/>   
+                                </td>  
+                            </tr>
+                            <tr>
+                                <td align="right">
+                                    <label for="password"> confirmez password</label>
+                                </td>
+                                <td> 
+                                    <input type="text" name="confirmPassword" placeholder="   Confirmez votre password:" id="confirm_password"/><br/>   
+                                </td>  
+                            </tr>
+                            <tr>
+                                <td></td>
+                            <td align="center">
+                                </br>
+                                <input class="input-submit" type="submit" name="submitInscription" value="je m'inscris">
+                                <?php
+                                    // require($erreur);
+                                ?>
+                            </td>
+                            </tr>
+                        </table>
+                    </form> 
+                </div>      
+            </div> 
                 <?php
                     if(isset($erreur))
                     {
                         echo $erreur;
                     }
                 ?>  
-        </div>    
+          
     </main>
 
   
@@ -120,10 +186,4 @@ if(isset($_POST['submitInscription']))
   
 
    
-    
-</body>
-</html>
-
-
-
-
+   
